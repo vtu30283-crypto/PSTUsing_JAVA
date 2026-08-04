@@ -1,1 +1,99 @@
+Examples
+1. No Parameters
+interface Greeting {
+    void sayHello();
+}
 
+Greeting g = () -> System.out.println("Hello!");
+
+g.sayHello();
+2. One Parameter
+interface Square {
+    int calculate(int x);
+}
+
+Square s = x -> x * x;
+
+System.out.println(s.calculate(5));
+
+Output:
+
+25
+3. Multiple Parameters
+interface Add {
+    int sum(int a, int b);
+}
+
+Add add = (a, b) -> a + b;
+
+System.out.println(add.sum(10, 20));
+
+Output:
+
+30
+4. Lambda with Multiple Statements
+interface Message {
+    void print(String name);
+}
+
+Message msg = (name) -> {
+    System.out.println("Welcome");
+    System.out.println(name);
+};
+
+msg.print("John");
+Using Lambda with Collections
+Sorting a List
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("John", "Alice", "Bob");
+
+        names.sort((a, b) -> a.compareTo(b));
+
+        System.out.println(names);
+    }
+}
+
+Output:
+
+[Alice, Bob, John]
+Using forEach()
+List<String> fruits = Arrays.asList("Apple", "Banana", "Orange");
+
+fruits.forEach(fruit -> System.out.println(fruit));
+Using Lambda with Streams
+import java.util.*;
+
+List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+
+numbers.stream()
+       .filter(n -> n % 2 == 0)
+       .forEach(System.out::println);
+
+Output:
+
+2
+4
+6
+Functional Interfaces
+
+A lambda expression can only be used with a functional interface, which has exactly one abstract method.
+
+Example:
+
+@FunctionalInterface
+interface Calculator {
+    int operate(int a, int b);
+}
+
+Using it:
+
+Calculator add = (a, b) -> a + b;
+
+System.out.println(add.operate(5, 3));
+
+Output:
+
+8
