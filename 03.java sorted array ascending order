@@ -1,0 +1,31 @@
+1. Sort an Array (Ascending)
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 8, 1, 9};
+
+        Arrays.sort(arr);
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+
+Sort an Array (Descending)
+
+For primitive arrays, sort in ascending order and then reverse:
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 8, 1, 9};
+
+        Arrays.sort(arr);
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
