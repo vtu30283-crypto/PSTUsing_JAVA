@@ -1,0 +1,127 @@
+Example 1: Sort Integers in Ascending Order
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+
+        list.sort((a, b) -> a - b);
+
+        System.out.println(list);
+    }
+}
+
+Output:
+
+[1, 2, 5, 8, 9]
+Example 2: Sort Integers in Descending Order
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+
+        list.sort((a, b) -> b - a);
+
+        System.out.println(list);
+    }
+}
+
+Output:
+
+[9, 8, 5, 2, 1]
+Example 3: Sort Strings by Length
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> words = Arrays.asList("Java", "C", "Python", "Go");
+
+        words.sort((a, b) -> a.length() - b.length());
+
+        System.out.println(words);
+    }
+}
+
+Output:
+
+[C, Go, Java, Python]
+Example 4: Sort Objects
+import java.util.*;
+
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+
+        students.add(new Student("John", 22));
+        students.add(new Student("Alice", 20));
+        students.add(new Student("Bob", 21));
+
+        students.sort((s1, s2) -> s1.age - s2.age);
+
+        for (Student s : students) {
+            System.out.println(s.name + " " + s.age);
+        }
+    }
+}
+
+Output:
+
+Alice 20
+Bob 21
+John 22
+Using Comparator.comparing()
+
+Sort by name:
+
+students.sort(Comparator.comparing(s -> s.name));
+
+Sort by age:
+
+students.sort(Comparator.comparingInt(s -> s.age));
+
+Descending order:
+
+students.sort(Comparator.comparingInt((Student s) -> s.age).reversed());
+Multiple-Level Sorting
+
+Sort by age, then by name:
+
+students.sort(
+    Comparator.comparingInt((Student s) -> s.age)
+              .thenComparing(s -> s.name)
+);
+Comparator vs Comparable
+Feature	Comparator	Comparable
+Package	java.util	java.lang
+Method	compare(T o1, T o2)	compareTo(T o)
+Sorting	External/custom	Natural/default
+Multiple sorting orders	✅ Yes	❌ No
+Best Practice
+
+When comparing numeric values, avoid subtraction (a - b) because it can overflow for large integers. Prefer:
+
+list.sort(Integer::compare);
+
+or
+
+students.sort(Comparator.comparingInt(s -> s.age));
+
+These are safer and more readable.
+
+Time Complexity
+
+Sorting with a comparator uses Java's sorting algorithm:
+
+Time Complexity: O(n log n)
+Space Complexity: Typically O(n) for object sorting (TimSort).
