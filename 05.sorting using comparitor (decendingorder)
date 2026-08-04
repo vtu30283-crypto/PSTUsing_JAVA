@@ -1,0 +1,73 @@
+Example 1: Sort Integers
+Ascending Order
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(5, 2, 8, 1, 9);
+
+        list.sort(Integer::compare);
+
+        System.out.println(list);
+    }
+}
+
+Output:
+
+[1, 2, 5, 8, 9]
+Descending Order
+list.sort((a, b) -> Integer.compare(b, a));
+
+Output:
+
+[9, 8, 5, 2, 1]
+Example 2: Sort Strings by Length
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> words = Arrays.asList("Java", "C", "Python", "Go");
+
+        words.sort((a, b) -> Integer.compare(a.length(), b.length()));
+
+        System.out.println(words);
+    }
+}
+
+Output:
+
+[C, Go, Java, Python]
+Example 3: Sort Objects
+import java.util.*;
+
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Student> students = new ArrayList<>();
+
+        students.add(new Student("John", 22));
+        students.add(new Student("Alice", 20));
+        students.add(new Student("Bob", 21));
+
+        students.sort((s1, s2) -> Integer.compare(s1.age, s2.age));
+
+        for (Student s : students) {
+            System.out.println(s.name + " " + s.age);
+        }
+    }
+}
+
+Output:
+
+Alice 20
+Bob 21
+John 22
